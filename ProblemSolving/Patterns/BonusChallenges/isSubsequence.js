@@ -34,5 +34,12 @@ function isSubsequence(firstStr, secondStr) {
     return false;
 }
 
+function isSubsequenceRecursive(firstStr, secondStr) {
+    if (firstStr.length === 0) return true;
+    if (secondStr.length === 0) return false;
+    if (firstStr[0] === secondStr[0]) return isSubsequenceRecursive(firstStr.slice(1), secondStr.slice(1));
+    return isSubsequenceRecursive(firstStr, secondStr.slice(1));
+}
+
 console.log(isSubsequence('abc', 'abracadabra'));
 console.log(isSubsequence('abc', 'acb'));
