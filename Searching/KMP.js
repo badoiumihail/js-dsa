@@ -1,6 +1,3 @@
-// Currently unavailable in the course
-// GeeksforGeeks video
-
 /**
  * KMP - Knuth Morris Pratt (KMP) pattern searching algorithm uses degenerating
  * property of the pattern and improves the worst case complexity to O(n).
