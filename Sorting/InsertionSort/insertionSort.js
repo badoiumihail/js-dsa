@@ -4,6 +4,8 @@
  */
 
 // colt's solution
+// worst case is quadratic time -> O(n^2), but if the data is almost sorted
+// the best case scenario is O(n)
 function insertionSort(arr) {
 
     // starting at index 1 because the first element
