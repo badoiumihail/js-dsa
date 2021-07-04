@@ -61,6 +61,7 @@ function pivot(arr, start = 0, end = arr.length - 1) {
     return swapIndex;
 }
 
+// BigO - best case: O(n log n), worst case: O(n^2)
 function quickSort(arr, left = 0, right = arr.length - 1) {
     if (left < right) {
         // console.log(`Arr: ${arr.slice(left, right + 1)}`);
