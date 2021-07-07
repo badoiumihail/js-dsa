@@ -1,6 +1,6 @@
 /**
  * What is a Stack?
- * > An abstract data structure that abides by a LIFO principle.
+ * > An abstract data structure that abides by the LIFO principle.
  *
  * LIFO = Last In First Out
  * > The last element added to the stack will be the first element
@@ -51,11 +51,4 @@ class Stack {
 }
 
 const stack = new Stack();
-stack.push(10);
-stack.push(11);
-stack.push(12);
-console.log(stack.pop());
-console.log(stack.pop());
-console.log(stack.pop());
-console.log(stack.pop());
-console.log(stack);
+
