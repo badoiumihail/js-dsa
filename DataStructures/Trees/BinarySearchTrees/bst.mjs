@@ -1,4 +1,5 @@
-class Node {
+// lookup 'default' on mdn
+export class Node {
     constructor(val) {
         this.val = val;
         this.left = null;
@@ -8,7 +9,7 @@ class Node {
     }
 }
 
-class BinarySearchTree {
+export class BinarySearchTree {
     constructor() {
         this.root = null;
     }
