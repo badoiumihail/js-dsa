@@ -13,14 +13,15 @@
  * > Access - O(n)
  */
 
-class Node {
+// lookup 'default' on mdn
+export class Node {
     constructor(val) {
         this.val = val;
         this.next = null;
     }
 }
 
-class Queue {
+export class Queue {
     constructor() {
         this.size = 0;
         this.first = null;
@@ -51,6 +52,19 @@ class Queue {
 
         this.size--;
         return removedNode.val;
+    }
+    print() {
+        if (!this.first) return [];
+
+        let values = [],
+            currentNode = this.first;
+
+        for (let i = 0; i < this.size; i++) {
+            values.push(currentNode);
+            currentNode = currentNode.next;
+        }
+
+        console.log(values);
     }
 }
 
