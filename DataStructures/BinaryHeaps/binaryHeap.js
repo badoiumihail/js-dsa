@@ -10,7 +10,7 @@ class MaxBinaryHeap {
 
         // initialize last pushed element index and its parent's index
         let index = this.values.length - 1,
-            parentIndex = Math.floor((index - 1) / 2);
+            parentIndex = 0;
 
         // as long as the parent is less than the element and the parent index is positive
         while (this.values[parentIndex] < this.values[index] && parentIndex >= 0) {
@@ -31,56 +31,44 @@ class MaxBinaryHeap {
     // removes the highest priority node (the root), places the last element instead
     // and then restructures the array in order to respect the max heap property
     extractMax() {
-        console.log(`starting heap:\t ${this.values}`);
+        // check if heap is empty
+        if (!this.values.length) return undefined;
+
         // swap the root with the last element in the heap
         [this.values[0], this.values[this.values.length - 1]] = [this.values[this.values.length - 1], this.values[0]];
-        console.log(`after swap:\t ${this.values}`);
+
         // extract the old root
-        const max = this.values.pop();
-        console.log(`after pop:\t ${this.values}`);
+        const oldRoot = this.values.pop();
 
         // initialize indices
-        let parent = 0,
-            left = 2 * parent + 1,
-            right = 2 * parent + 2;
+        let parent = 0, left = 1, right = 2;
 
-        // while right and left nodes' indices are in range
-        while (right < this.values.length || left < this.values.length) {
-            // reassign for current iteration
+        // initialize maximum value between child nodes
+        let maxChildVal = Math.max(this.values[left], this.values[right]);
+
+        // while the parent node value is less than any child node value
+        while (this.values[parent] < maxChildVal) {
+            // determine which child is more desirable for swapping
+            let child = this.values[left] === maxChildVal ? left : right;
+            // swap the parent with the child
+            [this.values[parent], this.values[child]] = [this.values[child], this.values[parent]];
+
+            // reassign values for indices
+            parent = child;
             left = 2 * parent + 1;
             right = 2 * parent + 2;
 
-            // if any child node has a greater value than the parent
-            if (this.values[parent] < this.values[left] || this.values[parent] < this.values[right]) {
-                // swap priority, greater values have priority
-                if (this.values[left] >= this.values[right]) {
-                    // swap left node with parent node
-                    [this.values[parent], this.values[left]] = [this.values[left], this.values[parent]];
-                    // reassign parent node index
-                    parent = left;
-                } else {
-                    // swap right node with parent node
-                    [this.values[parent], this.values[right]] = [this.values[right], this.values[parent]];
-                    // reassign parent node index
-                    parent = right;
-                }
-            // break loop in case no child node value is greater than the parent node value
-            } else break;
-            console.log(`iteration:\t ${this.values}`);
+            // recompute max between child nodes for next iteration
+            // added || -Infinity in case right child is out of range but left child isn't
+            maxChildVal = Math.max(this.values[left], this.values[right] || -Infinity);
         }
-        console.log(`result heap:\t ${this.values}`);
+        console.log(this.values);
         // return value of root node
-        return max;
+        return oldRoot;
     }
 }
 
 const heap = new MaxBinaryHeap();
 console.log(heap.insert(41));
-// console.log(heap.insert(39));
-// console.log(heap.insert(33));
-// console.log(heap.insert(18));
-// console.log(heap.insert(27));
-// console.log(heap.insert(12));
-// console.log(heap.insert(55));
 console.log(heap.extractMax());
 console.log(heap.extractMax());
