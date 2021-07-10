@@ -1,3 +1,7 @@
+/**
+ * See the priorityQueue_colt.js file for the algorithm breakdown through comments
+ * ! slightly different since there we're using a min binary heap, and here is a max binary heap
+ */
 class MaxBinaryHeap {
     constructor() {
         this.values = [];
