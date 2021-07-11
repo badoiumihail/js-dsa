@@ -103,18 +103,4 @@ function depthFirstSearchInOrder(tree) {
 }
 
 const tree = new BinarySearchTree();
-tree.insert(10);
-tree.insert(6);
-tree.insert(15);
-tree.insert(3);
-tree.insert(8);
-tree.insert(20);
-console.log(`BFS: ${breadthFirstSearch(tree)}`);
 
-// the output of a PreOrder DFS can be easily reconstructed into a tree
-console.log(`DFS [PRE Order]: ${depthFirstSearchPreOrder(tree)}`);
-
-console.log(`DFS [POST Order]: ${depthFirstSearchPostOrder(tree)}`);
-
-// if this is used with a BST the result will be a list with ordered values
-console.log(`DFS [IN Order]: ${depthFirstSearchInOrder(tree)}`);
