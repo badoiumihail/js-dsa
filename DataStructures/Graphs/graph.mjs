@@ -1,3 +1,5 @@
+import { Node, Stack } from "../StacksAndQueues/stacks.mjs";
+
 class Graph {
     constructor() {
         // the adjacency list used to store the vertices and the relations (edges) between them
@@ -58,7 +60,7 @@ class Graph {
         // if any input vertex is invalid raise an error
         if (!this.adjacencyList[vertexOne] || !this.adjacencyList[vertexTwo]) throw `Invalid vertex.`;
 
-        if (this.adjacencyList[vertexOne].includes(vertexTwo)){
+        if (this.adjacencyList[vertexOne].includes(vertexTwo)) {
             // filter array method using a callback function that tests all the elements in the array
             this.adjacencyList[vertexOne] = this.adjacencyList[vertexOne].filter(v => v !== vertexTwo);
             this.adjacencyList[vertexTwo] = this.adjacencyList[vertexTwo].filter(v => v !== vertexOne);
@@ -81,22 +83,92 @@ class Graph {
 
         delete this.adjacencyList[vertex];
     }
+
+    // depth first graph traversal - recursive variation
+    depthFirstTraversalRecursive(start) {
+        const results = [],
+            // using an object to verify if the objects were visited instead of looping through
+            // the results list since accessing an element in an object is constant time
+            visited = {},
+            // store the graph's adjacency list into a variable to be able to access it in the helper function
+            adjacencyList = this.adjacencyList;
+
+        // using a helper function since in the outer function we
+        // initialize both the results list and the visited object
+        (function DF(vertex) {
+            // error handling in case the input vertex is not present in the graph
+            if (!adjacencyList[vertex]) throw `Could not find [${vertex}] in the graph.`
+
+            // push the current vertex into
+            // the results and mark it visited
+            results.push(vertex);
+            visited[vertex] = true;
+
+            // iterate through the current vertex's neighbors
+            adjacencyList[vertex].forEach(neighbor => {
+                // if the current neighbor wasn't visited
+                // recursively call the function on it
+                if (!visited[neighbor]) DF(neighbor);
+            });
+            // immediately call the function after declaration with start as an argument
+        })(start);
+
+        // return the results
+        return results;
+    }
+    // depth first graph traversal - iterative variation
+    depthFirstTraversalIterative(start) {
+        // create a stack to manage the order
+        const stack = new Stack(),
+            // create an object to keep track of visited nodes
+            visited = {},
+            // array to store the resulting order of traversal
+            results = [];
+        // declare a variable that keeps track of the current vertex of each iteration of the main loop
+        let currentVertex;
+
+        // add the start vertex to the stack
+        stack.push(start);
+        // mark it as visited
+        visited[start] = true;
+
+        // as long as there are elements in the stack
+        while (stack.size) {
+            // pop a vertex and store it in a variable
+            currentVertex = stack.pop();
+            // add it to the result
+            results.push(currentVertex);
+
+            // iterate through its neighbors
+            this.adjacencyList[currentVertex].forEach(neighbor => {
+                // if the current neighbor hasn't been visited
+                if (!visited[neighbor]) {
+                    // add it to the stack
+                    stack.push(neighbor);
+                    // mark it as visited
+                    visited[neighbor] = true;
+                }
+            });
+        }
+        // return the traversal result
+        return results;
+    }
 }
 
 const graph = new Graph();
-graph.addVertex('Bucharest');
-graph.addVertex('Tokyo');
-graph.addVertex('Dallas');
-graph.addVertex('Houston');
-graph.addVertex('Paris');
-graph.addEdge('Tokyo', 'Dallas');
-graph.addEdge('Tokyo', 'Tokyo');
-graph.addEdge('Tokyo', 'Paris');
-graph.addEdge('Tokyo', 'Houston');
-graph.addEdge('Tokyo', 'Bucharest');
-console.log(graph);
-// graph.addEdge('Tokyo', 'Moscow');
-// graph.removeConnection('Tokyo', 'Dallas');
-// graph.removeEdge('Tokyo', 'Tokyo');
-graph.removeVertex('Tokyo');
-console.log(graph);
+graph.addVertex('A');
+graph.addVertex('B');
+graph.addVertex('C');
+graph.addVertex('D');
+graph.addVertex('E');
+graph.addVertex('F');
+graph.addEdge('A', 'B');
+graph.addEdge('A', 'C');
+graph.addEdge('B', 'D');
+graph.addEdge('C', 'E');
+graph.addEdge('D', 'E');
+graph.addEdge('D', 'F');
+graph.addEdge('E', 'F');
+// these will yield different results but the result is still valid for a depth first traversal
+console.log(graph.depthFirstTraversalRecursive('A'));
+console.log(graph.depthFirstTraversalIterative('A'));
