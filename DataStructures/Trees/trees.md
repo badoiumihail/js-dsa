@@ -1,13 +1,11 @@
 # [Trees](<https://en.wikipedia.org/wiki/Tree_(data_structure)>)
 
-#### [[Kind of trees]](https://en.wikipedia.org/wiki/List_of_data_structures#Trees)
+[[Kind of trees]](https://en.wikipedia.org/wiki/List_of_data_structures#Trees)
 
 ## What is a tree?
 
 A data structure that consists of nodes in a parent/child relationship.  
 They are non-linear data structures, unlike a list, which is linear.
-
----
 
 ## [Tree terminology](<https://en.wikipedia.org/wiki/Tree_(data_structure)#Terminology>)
 
@@ -19,8 +17,6 @@ They are non-linear data structures, unlike a list, which is linear.
 - **Edge** - the connection between one node and another
 
 <img src = "https://miro.medium.com/max/975/1*PWJiwTxRdQy8A_Y0hAv5Eg.png" width = 700>
-
----
 
 ## [Binary Trees](https://en.wikipedia.org/wiki/Binary_tree)
 
