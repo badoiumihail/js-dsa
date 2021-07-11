@@ -1,4 +1,5 @@
-import { Node, Stack } from "../StacksAndQueues/stacks.mjs";
+import { Node as StackNode, Stack } from "../StacksAndQueues/stacks.mjs";
+import { Node as QueueNode, Queue } from "../StacksAndQueues/queues.mjs";
 
 class Graph {
     constructor() {
@@ -116,11 +117,11 @@ class Graph {
         // return the results
         return results;
     }
-    // depth first graph traversal - iterative variation
+    // depth first graph traversal - iterative variation using a stack
     depthFirstTraversalIterative(start) {
-        // create a stack to manage the order
+        // create a stack to manage the order of traversal
         const stack = new Stack(),
-            // create an object to keep track of visited nodes
+            // create an object to keep track of visited vertices
             visited = {},
             // array to store the resulting order of traversal
             results = [];
@@ -153,6 +154,45 @@ class Graph {
         // return the traversal result
         return results;
     }
+
+    // breadth first graph traversal - iterative using a queue
+    breadthFirstTraversal(start) {
+        // create a queue to manage order of traversal
+        const queue = new Queue(),
+            // object to keep track of visited vertices
+            visited = {},
+            // array to store the order of traversal
+            results = [];
+        // declare a variable that keeps track of the current vertex of each iteration of the main loop
+        let currentVertex;
+
+        // visit the start vertex
+        visited[start] = true;
+        // add it to the queue
+        queue.enqueue(start)
+
+        while (queue.size) {
+            // store the current vertex
+            currentVertex = queue.dequeue();
+            // push it to the results
+            results.push(currentVertex);
+
+            // iterate through its neighbors in reverse order
+            // (slice returns a phantom copy so that we don't reverse the actual list of edges in the adjacency list)
+            this.adjacencyList[currentVertex].slice().reverse().forEach(neighbor => {
+                // if the current neighbor hasn't been visited
+                if (!visited[neighbor]) {
+                    // mark it as visited
+                    visited[neighbor] = true;
+                    // add it to the queue
+                    queue.enqueue(neighbor);
+                }
+            });
+        }
+
+        // return the order of traversal
+        return results;
+    }
 }
 
 const graph = new Graph();
@@ -172,3 +212,4 @@ graph.addEdge('E', 'F');
 // these will yield different results but the result is still valid for a depth first traversal
 console.log(graph.depthFirstTraversalRecursive('A'));
 console.log(graph.depthFirstTraversalIterative('A'));
+console.log(graph.breadthFirstTraversal('A'));
