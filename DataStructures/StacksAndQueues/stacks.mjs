@@ -13,14 +13,14 @@
  * > Access - O(n)
  */
 
-class Node {
+export class Node {
     constructor(val) {
         this.val = val;
         this.next = null;
     }
 }
 
-class Stack {
+export class Stack {
     constructor() {
         this.size = 0;
         this.head = null;
