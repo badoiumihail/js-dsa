@@ -196,20 +196,3 @@ class Graph {
 }
 
 const graph = new Graph();
-graph.addVertex('A');
-graph.addVertex('B');
-graph.addVertex('C');
-graph.addVertex('D');
-graph.addVertex('E');
-graph.addVertex('F');
-graph.addEdge('A', 'B');
-graph.addEdge('A', 'C');
-graph.addEdge('B', 'D');
-graph.addEdge('C', 'E');
-graph.addEdge('D', 'E');
-graph.addEdge('D', 'F');
-graph.addEdge('E', 'F');
-// these will yield different results but the result is still valid for a depth first traversal
-console.log(graph.depthFirstTraversalRecursive('A'));
-console.log(graph.depthFirstTraversalIterative('A'));
-console.log(graph.breadthFirstTraversal('A'));

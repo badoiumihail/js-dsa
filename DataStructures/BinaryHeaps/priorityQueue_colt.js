@@ -114,28 +114,3 @@ class PriorityQueue {
 }
 
 let pQueue = new PriorityQueue();
-pQueue.enqueue('heavy rain', 3);
-pQueue.enqueue('cataclysm', 0);
-pQueue.enqueue('hurricane', 1);
-pQueue.enqueue('wildfire', 2);
-pQueue.enqueue('low temperature', 4);
-pQueue.enqueue('mild heat', 5);
-pQueue.enqueue('extreme heat', 3);
-pQueue.enqueue('apocalypse', 0);
-pQueue.enqueue('violent riot', 2);
-pQueue.enqueue('mild rain', 5);
-pQueue.enqueue('something with priority 1', 1);
-console.log(pQueue);
-console.log('###############################################');
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());
-console.log(pQueue.dequeue());

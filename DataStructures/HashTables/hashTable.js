@@ -109,20 +109,3 @@ class HashTable {
 }
 
 const hashTable = new HashTable(17);
-console.log(hashTable.set('rounding', 'error'));
-console.log(hashTable.set('one', 1));
-console.log(hashTable.set('one', 2));
-console.log(hashTable.set('one', 3));
-console.log(hashTable.set('second one', 1));
-console.log(hashTable.set('object', {}));
-console.log(hashTable.set('list', [1,2,3,4,5,6,7,8]));
-console.log(hashTable.set('set', new Set([1,1,2,2,3,3])), '\n\n');
-console.log(hashTable);
-
-// console.log(hashTable.get('one'));
-// console.log(hashTable.get('object'));
-// console.log(hashTable.get('list'));
-// console.log(hashTable.get('set'));
-// console.log(hashTable.get('rounding'));
-console.log(hashTable.keys());
-console.log(hashTable.values());
